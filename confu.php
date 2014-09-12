@@ -3,7 +3,7 @@
  * Plugin Name: CONfu
  * Plugin URI: http://mertzmedia.dk/projects/confu
  * Description: A simple plugin for taking signups for a roleplaying convention.
- * Version: 1.2
+ * Version: 0.8
  * Author: Thomas Mertz
  * Author URI: http://mertzmedia.dk/
  */
