@@ -127,6 +127,16 @@ function confu_init() {
 		'supports' => array( 'title', 'editor', 'thumbnail' )
 	); 
 	register_post_type('aktiviteter',$args);
+	
+	register_taxonomy(
+		'day',
+		'aktiviteter',
+		array(
+			'label' => __( 'Dage' ),
+			'rewrite' => array( 'slug' => 'dag' ),
+			'hierarchical' => true,
+		)
+	);
 }
 add_action( 'init', 'confu_init' );
 ?>
