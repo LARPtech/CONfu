@@ -129,11 +129,20 @@ function confu_init() {
 	register_post_type('aktiviteter',$args);
 	
 	register_taxonomy(
-		'day',
+		'days',
 		'aktiviteter',
 		array(
 			'label' => __( 'Dage' ),
 			'rewrite' => array( 'slug' => 'dag' ),
+			'hierarchical' => true,
+		)
+	);
+	register_taxonomy(
+		'confu_activity_type',
+		'aktiviteter',
+		array(
+			'label' => __( 'Type' ),
+			'rewrite' => array( 'slug' => 'aktivitetstype' ),
 			'hierarchical' => true,
 		)
 	);
