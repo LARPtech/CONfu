@@ -119,7 +119,7 @@ function confu_init() {
 		'show_ui' => true, 
 		'show_in_menu' => true, 
 		'query_var' => true,
-		'rewrite' => true,
+		'rewrite' => array( 'slug' => 'programmet' ),
 		'capability_type' => 'post',
 		'has_archive' => true, 
 		'hierarchical' => false,
