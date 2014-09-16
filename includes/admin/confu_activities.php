@@ -7,7 +7,7 @@
 				<th>Titel</th>
 				<th>Dag og Tid</th>
 				<th>Antal deltagere</th>
-				<th>Ansvarlig</th>
+				<th>Forfatter</th>
 				<th>Type</th>
 			</tr>
 		</thead>
@@ -16,7 +16,7 @@
 				<th>Titel</th>
 				<th>Dag og Tid</th>
 				<th>Antal deltagere</th>
-				<th>Ansvarlig</th>
+				<th>Forfatter</th>
 				<th>Type</th>
 			</tr>
 		</tfoot>
@@ -34,7 +34,7 @@
 			foreach($types as $type){} ?>
 			<tr>
 				<th><?php the_title(); ?></th>
-				<td><?php echo get_post_meta(get_the_ID(), 'hc_aktivitet_dag', true); ?>, <?php echo get_post_meta(get_the_ID(), 'hc_aktivitet_tidspunkt', true); ?></td>
+				<td><?php echo date('H:i', get_post_meta(get_the_ID(), 'hc_aktivitet_tidspunkt', true)); ?></td>
 				<td><?php echo countActivityAttendees(get_the_ID()); ?> / <?php echo get_post_meta(get_the_ID(), 'hc_aktivitet_deltagertal', true); ?></td>
 				<td><?php echo get_post_meta(get_the_ID(), 'hc_aktivitet_forfatter', true); ?></td>
 				<td><?php echo $type->name; ?></td>

@@ -66,14 +66,14 @@ function attendeeProgrammeForEmail($userID) {
 	} else {
 	
 		$torsdag_activity_args = array(
-			'meta_key' => 'hc_aktivitet_tidspunkt',
-			'orderby' => 'meta_value',
-			'order' => 'ASC',
+			'meta_key' 		 => 'hc_aktivitet_tidspunkt',
+			'orderby' 		 => 'meta_value',
+			'order' 		 => 'ASC',
 			'posts_per_page' => -1,
-			'meta_query' => array(
+			'meta_query' 	 => array(
 				array(
-					'key' => 'hc_aktivitet_dag',
-					'value' => 'torsdag',
+					'key' 	  => 'hc_aktivitet_dag',
+					'value'   => 'torsdag',
 					'compare' => '='
 				)
 			),
