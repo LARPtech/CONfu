@@ -64,6 +64,11 @@ if( isset( $_POST[confu_nonce] ) && wp_verify_nonce( $_POST[confu_nonce], 'confu
 				);
 				update_user_meta(
 					$attendeeID, 
+					'confu_attendee_possible_gm', 
+					$_POST['confu']['possible_gm']
+				);
+				update_user_meta(
+					$attendeeID, 
 					'confu_membership', 
 					$_POST['confu']['membership']
 				);
@@ -156,6 +161,7 @@ if( isset( $_POST[confu_nonce] ) && wp_verify_nonce( $_POST[confu_nonce], 'confu
 	<div class="form-group">
     	<label for="confu[attendee][notes]">Har du nogen kommentarer eller særlige bemærkninger?</label>
 		<textarea name="confu[attendee][notes]" class="form-control" rows="3"><?php echo nl2br($_POST['confu']['attendee']['notes']); ?></textarea>
+		<p class="help-block">Er du f.eks. vegetar? Er der nogen allergier vi skal tage hensyn til? Vil du bare gerne skrive et kærlighedsbrev til arrangørerne? Så er det her du gør det.</p>
 	</div>
 	
 	<hr />
@@ -203,10 +209,10 @@ foreach($days as $day) { ?>
 						<span class="member_price">95,-</span>
 					</a>
 				</h4>
-				<section id="activity-<?php echo $day->slug; ?>" class="collapse post-body">
+				<section id="activity-<?php echo $day->slug; ?>" class="collapse in post-body"><small>
 					<p>Denne billet giver dig adgang til Hyggecon om <?php echo strtolower( $day->name ); ?>en.</p>
 					<p>Billetten giver adgang til de aktiviteter der er den pågældende dag, og garanterer dig både en varm seng at sove i og morgenmad dagen efter.</p>
-				</section>
+				</small></section>
 			</article>
 			
 		<?php
@@ -255,7 +261,17 @@ foreach($days as $day) { ?>
 	<hr />
 <?php } ?>
 <?php } ?>
-	<p>Hver tilmelding pålægges et rengøringsdepositum på 50,-</p>
+	<h3>Diverse</h3>
+	<div class="checkbox">
+		<label>
+			<input type="checkbox" name="confu[possible_gm]" value="yes" /> Ja, jeg må gerne kontaktes vedr. at være spilleder.
+		</label>
+		<p class="help-block">Hyggecon vil være dig evigt taknemmelig, og fanger du Skyggemesteren i baren efter du har været spilleder så har vi hørt han giver en øl og fortæller dig spændende historier fra hans hjemland.</p>
+	</div>
+	
+	<hr />
+	
 	<button type="submit" class="btn btn-success btn-block">Send tilmelding</button>
+	<p>Hver tilmelding pålægges et rengøringsdepositum på 50,-</p>
 <?php wp_nonce_field('confu_submit_signup','confu_nonce'); ?>
 </form>
