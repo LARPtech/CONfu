@@ -23,12 +23,12 @@
 								<td><?php echo $user->user_firstname . ' ' . $user->user_lastname; ?></td>
 							</tr>
 							<tr>
-								<th>Adresse</th>
-								<td><?php echo get_user_meta($_GET["participantID"], 'confu_attendee_address', true) . '<br />' . get_user_meta($_GET["participantID"], 'confu_attendee_zipcode', true) . ' ' . get_user_meta($_GET["participantID"], 'confu_attendee_town', true); ?></td>
+								<th>Pris</th>
+								<td><?php echo getUserTotal($_GET["participantID"]); ?>,-</td>
 							</tr>
 							<tr>
 								<th>Telefon</th>
-								<td><?php echo get_user_meta($_GET["participantID"], 'confu_attendee_phone_no', true); ?></td>
+								<td><?php echo get_user_meta($_GET["participantID"], 'confu_attendee_phone', true); ?></td>
 							</tr>
 							<tr>
 								<th>Email</th>
@@ -39,20 +39,16 @@
 								<td><?php echo get_user_meta($_GET["participantID"], 'confu_attendee_birthdate', true); ?></td>
 							</tr>
 							<tr>
-								<th>Billet</th>
-								<td><?php echo get_the_title( get_user_meta($_GET["participantID"], 'confu_attendee_ticket', true) ); ?></td>
-							</tr>
-							<tr>
 								<th>Spilleder</th>
 								<td><?php if( get_user_meta($_GET["participantID"], 'confu_attendee_possible_gm', true) == 1 ) { echo 'Ja'; } else { echo 'Nej'; } ?></td>
 							</tr>
 							<tr>
 								<th>Medlem</th>
-								<td><?php if( get_user_meta($_GET["participantID"], 'confu_attendee_membership', true) == 1 ) { echo 'Ja'; } else { echo 'Nej'; } ?></td>
+								<td><?php if( get_user_meta($_GET["participantID"], 'confu_membership', true) == 1 ) { echo 'Ja'; } else { echo 'Nej'; } ?></td>
 							</tr>
 							<tr>
 								<th>Besked</th>
-								<td><?php echo get_user_meta($_GET["participantID"], 'confu_attendee_message', true); ?></td>
+								<td><?php echo get_user_meta($_GET["participantID"], 'confu_attendee_notes', true); ?></td>
 							</tr>
 						</tbody>
 					</table>
@@ -66,9 +62,7 @@
 								<th colspan="2">PROGRAM</th>
 							</tr>
 						</thead>
-						<tbody>
-							<?php echo attendeeProgrammeForEmail($_GET["participantID"]); ?>
-						</tbody>
+						<tbody></tbody>
 					</table>
 					
 				</td>
@@ -88,7 +82,6 @@
 			<thead>
 				<tr>
 					<th>Navn</th>
-					<th>Billettype</th>
 					<th>Tilmeldingsdato</th>
 					<th>Telefonnummer</th>
 					<th>Email</th>
@@ -100,7 +93,6 @@
 			<tfoot>
 				<tr>
 					<th>Navn</th>
-					<th>Billettype</th>
 					<th>Tilmeldingsdato</th>
 					<th>Telefonnummer</th>
 					<th>Email</th>
@@ -120,12 +112,11 @@
 			foreach($attendees as $attendee) { ?>
 				<tr>
 					<th><a href="<?php echo $_SERVER["REQUEST_URI"]; ?>&participantID=<?php echo $attendee->ID; ?>"><?php echo $attendee->display_name; ?></a></th>
-					<td><?php echo get_the_title( get_user_meta($attendee->ID, 'confu_attendee_ticket', true) ); ?></td>
 					<td><?php echo $attendee->user_registered; ?></td>
-					<td><?php echo get_user_meta($attendee->ID, 'confu_attendee_phone_no', true); ?></td>
+					<td><?php echo get_user_meta($attendee->ID, 'confu_attendee_phone', true); ?></td>
 					<td><a href="maito:<?php echo $attendee->user_email; ?>"><?php echo $attendee->user_email; ?></a></td>
 					<td><?php if ( get_user_meta($attendee->ID, 'confu_attendee_possible_gm', true)==1 ) { echo 'Ja'; } else { echo 'Nej'; } ?></td>
-					<td><?php if ( get_user_meta($attendee->ID, 'confu_attendee_membership', true)==1 ) { echo 'Ja'; } else { echo 'Nej'; } ?></td>
+					<td><?php if ( get_user_meta($attendee->ID, 'confu_membership', true)==1 ) { echo 'Ja'; } else { echo 'Nej'; } ?></td>
 				</tr>
 			<?php } ?>
 			</tbody>

@@ -14,6 +14,24 @@ function convertToHoursMins($time, $format = '%d timer og %d minutter') {
 	return sprintf($format, $hours, $minutes);
 }
 
+function outputLocalMonthNames($monthNum) {
+	$monthNames = array(
+		1 => 'Januar',
+		2 => 'Februar',
+		3 => 'Marts',
+		4 => 'April',
+		5 => 'Maj',
+		6 => 'Juni',
+		7 => 'Juli',
+		8 => 'August',
+		9 => 'September',
+		10 => 'Oktober',
+		11 => 'November',
+		12 => 'December'
+	);
+	return $monthNames[$monthNum];
+}
+
 function getTicketAttendeeCount($ticketID) {
 	global $wpdb;
 	$count = $wpdb->get_var( "SELECT COUNT(*) FROM $wpdb->usermeta WHERE meta_key='confu_attendee_ticket' AND meta_value ='$ticketID'" );
@@ -41,117 +59,14 @@ function html_email_content_replace($email_body, $userID) {
 	$user = get_userdata( $userID );
 	$search = array(
 		'[firstname]',
-		'[amount_owed]',
-		'[attendee_programme_rows]'
+		'[amount_owed]'
 	);
 	$replace = array(
 		$user->user_firstname,
-		get_user_meta($userID, 'confu_attendee_total_owed', true),
-		attendeeProgrammeForEmail($userID)
+		getUserTotal($userID)
 	);
 	$content = str_replace($search, $replace, $email_body);
 	return $content;
-}
-
-function attendeeProgrammeForEmail($userID) {
-	global $wpdb;
-	$activities_ids = $wpdb->get_col( "SELECT activityID FROM ".$wpdb->prefix."confu_activity_attendees WHERE attendeeID = '{$userID}'" );
-	
-	if( count($activities_ids)==0 ) {
-		
-		$output .= '<tr>';
-		$output .= '<td colspan="2" style="padding:.5em;">Du har ikke tilmeldt dig nogen aktiviteter.</td>';
-		$output .= '</tr>';
-		
-	} else {
-	
-		$torsdag_activity_args = array(
-			'meta_key' 		 => 'hc_aktivitet_tidspunkt',
-			'orderby' 		 => 'meta_value',
-			'order' 		 => 'ASC',
-			'posts_per_page' => -1,
-			'meta_query' 	 => array(
-				array(
-					'key' 	  => 'hc_aktivitet_dag',
-					'value'   => 'torsdag',
-					'compare' => '='
-				)
-			),
-			'post_type' => 'aktiviteter',
-			'post__in' => $activities_ids
-		);
-		$activities = new WP_Query($torsdag_activity_args);
-		$output .= '<tr><th colspan="2" style="text-align:left;padding:.5em;">Torsdag</th></tr>';
-		if ( $activities->have_posts() ) : while ( $activities->have_posts() ) : $activities->the_post();
-			$output .= '<tr>';
-			$output .= '<th style="padding:.5em;">'.get_post_meta(get_the_ID(), 'hc_aktivitet_tidspunkt', true).'</th>';
-			$output .= '<td style="padding:.5em;">'.get_the_title().'</td>';
-			$output .= '</tr>';
-		endwhile; else:
-			$output .= '<tr>';
-			$output .= '<td colspan="2" style="padding:.5em;">Du har ikke tilmeldt dig nogen aktiviteter om torsdagen.</td>';
-			$output .= '</tr>';
-		endif;
-		
-		$fredag_activity_args = array(
-			'meta_key' => 'hc_aktivitet_tidspunkt',
-			'orderby' => 'meta_value',
-			'order' => 'ASC',
-			'posts_per_page' => -1,
-			'meta_query' => array(
-				array(
-					'key' => 'hc_aktivitet_dag',
-					'value' => 'fredag',
-					'compare' => '='
-				)
-			),
-			'post_type' => 'aktiviteter',
-			'post__in' => $activities_ids
-		);
-		$activities = new WP_Query($fredag_activity_args);
-		$output .= '<tr><th colspan="2" style="text-align:left;padding:.5em;">Fredag</th></tr>';
-		if ( $activities->have_posts() ) : while ( $activities->have_posts() ) : $activities->the_post();
-			$output .= '<tr>';
-			$output .= '<th style="padding:.5em;">'.get_post_meta(get_the_ID(), 'hc_aktivitet_tidspunkt', true).'</th>';
-			$output .= '<td style="padding:.5em;">'.get_the_title().'</td>';
-			$output .= '</tr>';
-		endwhile; else:
-			$output .= '<tr>';
-			$output .= '<td colspan="2" style="padding:.5em;">Du har ikke tilmeldt dig nogen aktiviteter om fredagen.</td>';
-			$output .= '</tr>';
-		endif;
-		
-		$lordag_activity_args = array(
-			'meta_key' => 'hc_aktivitet_tidspunkt',
-			'orderby' => 'meta_value',
-			'order' => 'ASC',
-			'posts_per_page' => -1,
-			'meta_query' => array(
-				array(
-					'key' => 'hc_aktivitet_dag',
-					'value' => 'lørdag',
-					'compare' => '='
-				)
-			),
-			'post_type' => 'aktiviteter',
-			'post__in' => $activities_ids
-		);
-		$activities = new WP_Query($lordag_activity_args);
-		$output .= '<tr><th colspan="2" style="text-align:left;padding:.5em;">Lørdag</th></tr>';
-		if ( $activities->have_posts() ) : while ( $activities->have_posts() ) : $activities->the_post();
-			$output .= '<tr>';
-			$output .= '<th style="padding:.5em;">'.get_post_meta(get_the_ID(), 'hc_aktivitet_tidspunkt', true).'</th>';
-			$output .= '<td style="padding:.5em;">'.get_the_title().'</td>';
-			$output .= '</tr>';
-		endwhile; else:
-			$output .= '<tr>';
-			$output .= '<td colspan="2" style="padding:.5em;">Du har ikke tilmeldt dig nogen aktiviteter om lørdagen.</td>';
-			$output .= '</tr>';
-		endif;
-	
-	}
-	
-	return $output;
 }
 
 function sendSignupReceipt($uid,$email) {
@@ -167,6 +82,53 @@ function sendSignupReceipt($uid,$email) {
 		return FALSE;
 	}
 	
+}
+
+function getUserTotal($uid) {
+	$activities = get_posts( array(
+		'connected_type' => 'ATTENDEE_ACTIVITY_SIGNUP',
+		'connected_items' => $uid,
+		'suppress_filters' => false,
+		'nopaging' => true
+	) );
+	$membership = get_user_meta($uid, 'confu_membership', true);
+	if( $membership == 1 ) {
+		$days = get_user_meta($uid, 'confu_tickets', true);
+		if( !is_string($days) ) {
+			if( count($days)>0 ) {
+				$totalEntryFee = count($days) * 95;
+				if( count($activities)>0 ) {
+					foreach( $activities as $activity ) {
+						$activityPrice[] = get_post_meta($activity->ID, 'hc_aktivitet_medlemspris', true);
+					}
+					$totalActivityPrice = array_sum( $activityPrice );
+				}
+				return $totalEntryFee + 75 + $totalActivityPrice + 50;
+			} else {
+				return 0;
+			}
+		} else {
+			return 0; 	
+		}
+	} else {
+		$days = get_user_meta($uid, 'confu_tickets', true);
+		if( !is_string($days) ) {
+			if( count($days)>0 ) {
+				$totalEntryFee = count($days) * 145;
+				if( count($activities)>0 ) {
+					foreach( $activities as $activity ) {
+						$activityPrice[] = get_post_meta($activity->ID, 'hc_aktivitet_medlemspris', true);
+					}
+					$totalActivityPrice = array_sum( $activityPrice );
+				}
+				return $totalEntryFee + $totalActivityPrice + 50;
+			} else {
+				return 0;
+			}
+		} else {
+			return 0;
+		}
+	}
 }
 
 function calculateActivityPrice($uid, $activities) {

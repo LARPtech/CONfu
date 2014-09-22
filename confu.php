@@ -41,21 +41,26 @@ function confu_attendees_shortcode(){
 }
 add_shortcode( 'confu_attendees', 'confu_attendees_shortcode' );
 
+function confu_signup_shortcode(){
+	include( CONFU_PATH . 'includes/frontend/signupForm.inc.php');
+}
+add_shortcode( 'confu_signup', 'confu_signup_shortcode' );
+
 //==================================
 //! 
 //==================================
-#add_action( 'admin_menu', 'confu_menu_pages' );
-#function confu_menu_pages(){
-#	add_menu_page( 'CONfu', 'CONfu', 'moderate_comments', CONFU_PATH.'includes/admin/confu_overview.php', '', plugins_url( 'confu/assets/images/cake.png' ), 3 );
-#	add_submenu_page( CONFU_PATH.'includes/admin/confu_overview.php', 'CONfu Deltagere', 'CONfu Deltagere', 'moderate_comments', 'confu_deltagere', 'confu_admin_participants_page_callback' );
-#	add_submenu_page( CONFU_PATH.'includes/admin/confu_overview.php', 'CONfu Aktiviteter', 'CONfu Aktiviteter', 'moderate_comments', 'confu_activities', 'confu_admin_activities_page_callback' );
-#}
-#function confu_admin_participants_page_callback() {
-#	include(CONFU_PATH.'includes/admin/confu_participants.php');
-#}
-#function confu_admin_activities_page_callback() {
-#	include(CONFU_PATH.'includes/admin/confu_activities.php');
-#}
+add_action( 'admin_menu', 'confu_menu_pages' );
+function confu_menu_pages(){
+	add_menu_page( 'CONfu', 'CONfu', 'moderate_comments', CONFU_PATH.'includes/admin/confu_overview.php', '', plugins_url( 'confu/assets/images/cake.png' ), 3 );
+	add_submenu_page( CONFU_PATH.'includes/admin/confu_overview.php', 'CONfu Deltagere', 'CONfu Deltagere', 'moderate_comments', 'confu_deltagere', 'confu_admin_participants_page_callback' );
+	add_submenu_page( CONFU_PATH.'includes/admin/confu_overview.php', 'CONfu Aktiviteter', 'CONfu Aktiviteter', 'moderate_comments', 'confu_activities', 'confu_admin_activities_page_callback' );
+}
+function confu_admin_participants_page_callback() {
+	include(CONFU_PATH.'includes/admin/confu_participants.php');
+}
+function confu_admin_activities_page_callback() {
+	include(CONFU_PATH.'includes/admin/confu_activities.php');
+}
 
 
 //==================================
@@ -94,4 +99,3 @@ add_action('wp_enqueue_scripts', 'confu_queued');
 //! CUSTOM POST TYPES
 //==================================
 include(CONFU_PATH . 'includes/functions/cpt-confu_activity.inc.php');
-include(CONFU_PATH . 'includes/functions/cpt-confu_signup.inc.php');
