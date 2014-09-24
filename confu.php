@@ -28,6 +28,14 @@ function confu_activate() {
 register_activation_hook( __FILE__, 'confu_activate' );
 
 //==================================
+//! LOADING TRANSLATIONS
+//==================================
+function confu_lang_init() {
+	load_plugin_textdomain( 'confu', false, dirname( plugin_basename( __FILE__ ) ).'/languages/' );
+}
+add_action( 'init', 'confu_lang_init' );
+
+//==================================
 //! SHORTCODES
 //==================================
 function confu_attendees_shortcode(){
@@ -45,6 +53,11 @@ function confu_signup_shortcode(){
 	include( CONFU_PATH . 'includes/frontend/signupForm.inc.php');
 }
 add_shortcode( 'confu_signup', 'confu_signup_shortcode' );
+
+function confu_profile_shortcode(){
+	include( CONFU_PATH . 'includes/frontend/attendeeProfile.inc.php');
+}
+add_shortcode( 'confu_profile', 'confu_profile_shortcode' );
 
 //==================================
 //! 

@@ -1,10 +1,17 @@
 <?php if( isset( $_GET["participantID"] ) AND is_numeric( $_GET["participantID"] ) ) { 
-	$user = get_userdata( $_GET["participantID"] );
+	$user = get_userdata( $_GET["participantID"] );function my_admin_notice() { ?>
+    <div class="updated">
+        <p><?php _e( 'Updated!', 'confu' ); ?></p>
+    </div>
+    <?php
+}
 ?>
 
 	<div class="wrap">
-		<div id="icon-options-general" class="icon32"><br></div><h2><?php echo $user->user_firstname . ' ' . $user->user_lastname; ?></h2>
-		
+		<h2>CONfu Deltager: <?php echo $user->user_firstname . ' ' . $user->user_lastname; ?></h2>
+		<?php if( isset( $_POST['confu_payment_update_nonce'] ) && wp_verify_nonce( $_POST['confu_payment_update_nonce'], 'update_confu_participant_payment' ) ) {
+			update_user_meta( $_GET["participantID"], 'confu_payment_received', $_POST['confuAmountPaid'] );
+		} ?>
 		<br class="clear">
 		
 		<table width="100%">
@@ -14,17 +21,13 @@
 					<table class="wp-list-table widefat fixed" cellspacing="0">
 						<thead>
 							<tr>
-								<th colspan="2">STAMDATA</th>
+								<th colspan="2"><strong>STAMDATA</strong></th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr>
 								<th>Navn</th>
 								<td><?php echo $user->user_firstname . ' ' . $user->user_lastname; ?></td>
-							</tr>
-							<tr>
-								<th>Pris</th>
-								<td><?php echo getUserTotal($_GET["participantID"]); ?>,-</td>
 							</tr>
 							<tr>
 								<th>Telefon</th>
@@ -55,14 +58,91 @@
 
 				</td>
 				<td valign="top">
+					<?php 
+					$tickets = get_user_meta( $_GET["participantID"], 'confu_tickets', true ); 
+					foreach( $tickets as $day => $ticket ) {
+						$days[] = $day;
+					} 
+					$activities = get_posts( array(
+						'connected_type' => 'ATTENDEE_ACTIVITY_SIGNUP',
+						'connected_items' => $_GET["participantID"],
+						'suppress_filters' => false,
+						'nopaging' => true
+					) );
+					foreach( $activities as $activity ) {
+						$activityIDs[] = $activity->ID;
+					} ?>
+					<table class="wp-list-table widefat fixed" cellspacing="0">
+						<thead>
+							<tr>
+								<th colspan="2"><strong>PROGRAM</strong></th>
+							</tr>
+						</thead>
+						<tbody>
+						<?php foreach( $days as $day ) { ?>
+							<tr>
+								<th valign="top" width="20%"><strong><?php echo get_term_by( 'slug', $day, 'days' )->name; ?></strong></th>
+								<td width="80%">
+								<?php
+								$single_day_activities_args = array(
+									'posts_per_page' => -1,
+									'post_type' => 'aktiviteter',
+									'meta_key' => 'hc_aktivitet_tidspunkt',
+									'orderby' => 'meta_value',
+									'order' => 'ASC',
+									'post__in' => $activityIDs,
+									'tax_query' => array( array(
+										'taxonomy' => 'days',
+										'field'    => 'slug',
+										'terms'    => $day
+									) )
+								);
+								$single_day_activities = new WP_Query($single_day_activities_args);
+								if ( $single_day_activities->have_posts() ) : while ( $single_day_activities->have_posts() ) : $single_day_activities->the_post(); ?>
+									<p><strong class="time"><?php echo get_post_meta(get_the_ID(), 'hc_aktivitet_tidspunkt', true); ?></strong> <?php the_title(); ?></p>
+								<?php endwhile; else : ?>
+									<p><?php _e( 'Sorry, no posts matched your criteria.' ); ?></p>
+								<?php endif; ?>
+								</td>
+							</tr>
+						<?php } ?>
+						</tbody>
+					</table>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
 					
 					<table class="wp-list-table widefat fixed" cellspacing="0">
 						<thead>
 							<tr>
-								<th colspan="2">PROGRAM</th>
+								<th colspan="2"><strong>BETALING</strong></th>
 							</tr>
 						</thead>
-						<tbody></tbody>
+						<form method="post">
+						<tbody>
+							<tr>
+								<th>Samlede pris</th>
+								<td><?php $amountOwed = getUserTotal($_GET["participantID"]); echo $amountOwed; ?>,-</td>
+							</tr>
+							<tr>
+								<th>Betaling modtaget</th>
+								<td><input type="text" name="confuAmountPaid" value="<?php $amountPaid = get_user_meta($_GET["participantID"], 'confu_payment_received', true); if( is_numeric($amountPaid) ) { echo $amountPaid; } else { echo 0; } ?>" class="widefat" /></td>
+							</tr>
+							<tr>
+								<th>Skylder</th>
+								<td><?php echo $amountOwed - $amountPaid; ?>,-</td>
+							</tr>
+							<tr>
+								<th></th>
+								<td>
+									<input type="submit" name="submit" id="submit" class="button button-primary" value="Gem ændringer">
+								</td>
+							</tr>
+						</tbody>
+						<?php wp_nonce_field('update_confu_participant_payment', 'confu_payment_update_nonce'); ?>
+						</form>
 					</table>
 					
 				</td>
