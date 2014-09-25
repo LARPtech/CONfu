@@ -45,10 +45,10 @@ function countActivityAttendees($activityID) {
 }
 
 function getSuccessBar() {
-	$must_have_attendees = 75;
+	$must_have_attendees = 60;
 	$userCount = count_users(); 
 	$count = $userCount["avail_roles"]["attendant"];
-	$width = ($must_have_attendees/100)*$count;
+	$width = (100/$must_have_attendees)*$count;
 	$output .= '<div class="barwrapper" style="width:100%;padding:2px;border:1px solid #777;border-radius:5px;">';
 	$output .= '<div class="bar" style="height:15px;background:#777;width:'.$width.'%;border-radius:3px;"></div>';
 	$output .= '</div>';

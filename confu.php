@@ -66,15 +66,14 @@ add_action( 'admin_menu', 'confu_menu_pages' );
 function confu_menu_pages(){
 	add_menu_page( 'CONfu', 'CONfu', 'moderate_comments', CONFU_PATH.'includes/admin/confu_overview.php', '', plugins_url( 'confu/assets/images/cake.png' ), 3 );
 	add_submenu_page( CONFU_PATH.'includes/admin/confu_overview.php', 'CONfu Deltagere', 'CONfu Deltagere', 'moderate_comments', 'confu_deltagere', 'confu_admin_participants_page_callback' );
-	add_submenu_page( CONFU_PATH.'includes/admin/confu_overview.php', 'CONfu Aktiviteter', 'CONfu Aktiviteter', 'moderate_comments', 'confu_activities', 'confu_admin_activities_page_callback' );
+	add_submenu_page( CONFU_PATH.'includes/admin/confu_overview.php', __('CONfu Settings','confu'), __('CONfu Settings','confu'), 'moderate_comments', 'confu_settings', 'confu_admin_settings_page_callback' );
 }
 function confu_admin_participants_page_callback() {
 	include(CONFU_PATH.'includes/admin/confu_participants.php');
 }
-function confu_admin_activities_page_callback() {
-	include(CONFU_PATH.'includes/admin/confu_activities.php');
+function confu_admin_settings_page_callback() {
+	include(CONFU_PATH.'includes/admin/confu_settings.php');
 }
-
 
 //==================================
 //! DASHBOARD WIDGET

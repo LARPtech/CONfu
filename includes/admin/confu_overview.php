@@ -1,3 +1,4 @@
 <div class="wrap">
-	<div id="icon-options-general" class="icon32"><br></div><h2>CONfu Dashboard</h2>
+	<h2>CONfu Dashboard</h2>
+	<p><?php echo getSuccessBar(); ?></p>
 </div>
