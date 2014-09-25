@@ -60,7 +60,7 @@ function confu_profile_shortcode(){
 add_shortcode( 'confu_profile', 'confu_profile_shortcode' );
 
 //==================================
-//! 
+//! ADMIN PAGES
 //==================================
 add_action( 'admin_menu', 'confu_menu_pages' );
 function confu_menu_pages(){
