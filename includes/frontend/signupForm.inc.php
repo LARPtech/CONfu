@@ -166,7 +166,7 @@ if( isset( $_POST[confu_nonce] ) && wp_verify_nonce( $_POST[confu_nonce], 'confu
 	
 	<hr />
 	
-	<h3>Medlemsskab</h3>
+	<h3><?php _e('Membership','confu'); ?></h3>
 	<div class="radio">
 		<label>
 			<input type="radio" name="confu[membership]" id="confu[membership]" class="membership" value="1" <?php if( isset($_POST['confu']['membership']) ) { checked($_POST['confu']['membership'], 1, true); } else { echo 'checked'; } ?>>
@@ -261,7 +261,7 @@ foreach($days as $day) { ?>
 	<hr />
 <?php } ?>
 <?php } ?>
-	<h3>Diverse</h3>
+	<h3><?php _e( 'Miscellaneous', 'confu' ); ?></h3>
 	<div class="checkbox">
 		<label>
 			<input type="checkbox" name="confu[possible_gm]" value="yes" /> Ja, jeg må gerne kontaktes vedr. at være spilleder.

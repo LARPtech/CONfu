@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CONfu\n"
-"POT-Creation-Date: 2014-09-24 15:47+0100\n"
-"PO-Revision-Date: 2014-09-24 15:47+0100\n"
+"POT-Creation-Date: 2014-09-26 13:44+0100\n"
+"PO-Revision-Date: 2014-09-26 13:49+0100\n"
 "Last-Translator: Thomas Mertz <tm@peytz.dk>\n"
 "Language-Team: NERDtech <nerdtech@tmertz.com>\n"
 "Language: da\n"
@@ -16,48 +16,135 @@ msgstr ""
 "X-Poedit-KeywordsList: __;_e;_x\n"
 "X-Poedit-SearchPath-0: .\n"
 
+#: confu.php:21
+msgid "Attendee"
+msgstr "Deltager"
+
+#: confu.php:68
+msgid "CONfu Participants"
+msgstr "CONfu Deltagere"
+
+#: confu.php:69 includes/admin/confu_settings.php:2
+msgid "CONfu Settings"
+msgstr "CONfu Indstillinger"
+
+#: confu.php:85
+msgid "CONfu by Numbers"
+msgstr "CONfu Kernetal"
+
+#: includes/admin/confu_overview.php:6
+msgid "CONfu Signups"
+msgstr "CONfu Tilmeldinger"
+
 #: includes/admin/confu_participants.php:4
 msgid "Updated!"
-msgstr ""
+msgstr "Opdateret!"
+
+#: includes/admin/confu_participants.php:24
+msgid "Userdata"
+msgstr "Brugerdata"
+
+#: includes/admin/confu_participants.php:29
+#: includes/admin/confu_participants.php:164
+#: includes/admin/confu_participants.php:175
+msgid "Name"
+msgstr "Navn"
+
+#: includes/admin/confu_participants.php:33
+#: includes/admin/confu_participants.php:166
+#: includes/admin/confu_participants.php:177
+msgid "Phone"
+msgstr "Telefon"
+
+#: includes/admin/confu_participants.php:37
+#: includes/admin/confu_participants.php:167
+#: includes/admin/confu_participants.php:178
+msgid "Email"
+msgstr "E-mail"
+
+#: includes/admin/confu_participants.php:41
+msgid "Birthdate"
+msgstr "Fødselsdato"
+
+#: includes/admin/confu_participants.php:45
+#: includes/admin/confu_participants.php:168
+#: includes/admin/confu_participants.php:179
+msgid "GM?"
+msgstr "Spilleder?"
+
+#: includes/admin/confu_participants.php:49
+#: includes/admin/confu_participants.php:169
+#: includes/admin/confu_participants.php:180
+msgid "Member?"
+msgstr "Medlem?"
+
+#: includes/admin/confu_participants.php:53
+msgid "Note"
+msgstr "Kommentar"
 
 #: includes/admin/confu_participants.php:104
 #: includes/frontend/signupForm.inc.php:256
 msgid "Sorry, no posts matched your criteria."
-msgstr ""
+msgstr "Beklager, men vi fandt ikke noget der matcher dine kriterier."
+
+#: includes/admin/confu_participants.php:120
+msgid "Payment"
+msgstr "Betaling"
+
+#: includes/admin/confu_participants.php:126
+msgid "Total price"
+msgstr "Samlet pris"
+
+#: includes/admin/confu_participants.php:130
+msgid "Payment Received"
+msgstr "Betaling modtaget"
+
+#: includes/admin/confu_participants.php:134
+msgid "Amount owed"
+msgstr "Skylder"
+
+#: includes/admin/confu_participants.php:140
+msgid "Save changes"
+msgstr "Gem ændringer"
+
+#: includes/admin/confu_participants.php:165
+#: includes/admin/confu_participants.php:176
+msgid "Signup Date"
+msgstr "Tilmeldingsdato"
 
 #: includes/frontend/attendeeProfile.inc.php:3
 msgid "Login"
-msgstr ""
+msgstr "Log ind"
 
 #: includes/frontend/attendeeProfile.inc.php:5
 #: includes/frontend/attendeeProfile.inc.php:21
 msgid "Email address"
-msgstr ""
+msgstr "E-mail adresse"
 
 #: includes/frontend/attendeeProfile.inc.php:6
 #: includes/frontend/attendeeProfile.inc.php:22
 msgid "Enter email"
-msgstr ""
+msgstr "Indtast e-mail"
 
 #: includes/frontend/attendeeProfile.inc.php:9
 msgid "Password"
-msgstr ""
+msgstr "Kodeord"
 
 #: includes/frontend/attendeeProfile.inc.php:10
 msgid "Enter password"
-msgstr ""
+msgstr "Indtast kodeord"
 
 #: includes/frontend/attendeeProfile.inc.php:12
 msgid "Log me in"
-msgstr ""
+msgstr "Log mig ind"
 
 #: includes/frontend/attendeeProfile.inc.php:19
 msgid "Reset password"
-msgstr ""
+msgstr "Nulstil kodeord"
 
 #: includes/frontend/attendeeProfile.inc.php:24
 msgid "Send me a new password"
-msgstr ""
+msgstr "Send mig et nyt kodeord"
 
 #: includes/frontend/signupForm.inc.php:5
 msgid ""
@@ -73,7 +160,16 @@ msgstr ""
 msgid "Der er allerede tilmeldt en bruger med den mailadresse."
 msgstr ""
 
+#: includes/frontend/signupForm.inc.php:169
+msgid "Membership"
+msgstr "Medlemsskab"
+
+#: includes/frontend/signupForm.inc.php:264
+msgid "Miscellaneous"
+msgstr "Diverse"
+
 #: includes/functions/cpt-confu_activity.inc.php:4
+#: includes/functions/cpt-confu_activity.inc.php:15
 msgid "Aktiviteter"
 msgstr ""
 
@@ -82,7 +178,6 @@ msgid "Aktivitet"
 msgstr ""
 
 #: includes/functions/cpt-confu_activity.inc.php:6
-#: includes/functions/cpt-confu_signup.inc.php:6
 msgid "Tilføj ny"
 msgstr ""
 
@@ -126,46 +221,12 @@ msgstr ""
 msgid "Type"
 msgstr ""
 
-#: includes/functions/cpt-confu_signup.inc.php:4
-msgid "Tilmeldinger"
-msgstr ""
-
-#: includes/functions/cpt-confu_signup.inc.php:5
-msgid "Tilmelding"
-msgstr ""
-
-#: includes/functions/cpt-confu_signup.inc.php:7
-msgid "Tilføj ny tilmelding"
-msgstr ""
-
-#: includes/functions/cpt-confu_signup.inc.php:8
-msgid "Rediger tilmelding"
-msgstr ""
-
-#: includes/functions/cpt-confu_signup.inc.php:9
-msgid "Ny tilmelding"
-msgstr ""
-
-#: includes/functions/cpt-confu_signup.inc.php:10
-msgid "Alle tilmeldinger"
-msgstr ""
-
-#: includes/functions/cpt-confu_signup.inc.php:11
-msgid "Vis tilmelding"
-msgstr ""
-
-#: includes/functions/cpt-confu_signup.inc.php:12
-msgid "Søg i tilmeldinger"
-msgstr ""
-
-#: includes/functions/cpt-confu_signup.inc.php:13
-msgid "Ingen tilmeldinger fundet"
-msgstr ""
-
-#: includes/functions/cpt-confu_signup.inc.php:14
-msgid "Ingen tilmeldinger fundet i papirkurven"
-msgstr ""
-
 #: includes/p2p-connection-types.inc.php:8
 msgid "Deltager"
 msgstr ""
+
+#~ msgid "Tilmeldinger"
+#~ msgstr "Signups"
+
+#~ msgid "Tilmelding"
+#~ msgstr "Signup"

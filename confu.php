@@ -18,7 +18,7 @@ include(CONFU_PATH . 'includes/functions.php');
 function confu_activate() {
 	add_role( 
 		'attendant', 
-		'Deltager', 
+		__( 'Attendee','confu' ), 
 		array(
 			'read' => true
 		) 
@@ -30,10 +30,18 @@ register_activation_hook( __FILE__, 'confu_activate' );
 //==================================
 //! LOADING TRANSLATIONS
 //==================================
-function confu_lang_init() {
-	load_plugin_textdomain( 'confu', false, dirname( plugin_basename( __FILE__ ) ).'/languages/' );
+function confu_load_plugin_textdomain() {
+ 
+	$domain = 'confu';
+	$locale = apply_filters( 'plugin_locale', get_locale(), $domain );
+ 
+	// wp-content/languages/plugin-name/plugin-name-de_DE.mo
+	load_textdomain( $domain, trailingslashit( WP_LANG_DIR ) . $domain . '/' . $domain . '-' . $locale . '.mo' );
+	// wp-content/plugins/plugin-name/languages/plugin-name-de_DE.mo
+	load_plugin_textdomain( $domain, FALSE, basename( dirname( __FILE__ ) ) . '/languages/' );
+ 
 }
-add_action( 'init', 'confu_lang_init' );
+add_action( 'init', 'confu_load_plugin_textdomain' );
 
 //==================================
 //! SHORTCODES
@@ -65,7 +73,7 @@ add_shortcode( 'confu_profile', 'confu_profile_shortcode' );
 add_action( 'admin_menu', 'confu_menu_pages' );
 function confu_menu_pages(){
 	add_menu_page( 'CONfu', 'CONfu', 'moderate_comments', CONFU_PATH.'includes/admin/confu_overview.php', '', plugins_url( 'confu/assets/images/cake.png' ), 3 );
-	add_submenu_page( CONFU_PATH.'includes/admin/confu_overview.php', 'CONfu Deltagere', 'CONfu Deltagere', 'moderate_comments', 'confu_deltagere', 'confu_admin_participants_page_callback' );
+	add_submenu_page( CONFU_PATH.'includes/admin/confu_overview.php', __('CONfu Participants','confu'), __('CONfu Participants','confu'), 'moderate_comments', 'confu_participants', 'confu_admin_participants_page_callback' );
 	add_submenu_page( CONFU_PATH.'includes/admin/confu_overview.php', __('CONfu Settings','confu'), __('CONfu Settings','confu'), 'moderate_comments', 'confu_settings', 'confu_admin_settings_page_callback' );
 }
 function confu_admin_participants_page_callback() {
@@ -82,7 +90,7 @@ function confu_core_numbers_widget() {
 	include( CONFU_PATH . 'includes/admin/confu_dashboard_widget.php');
 }
 function add_confu_dashboard_widgets() {
-	wp_add_dashboard_widget('confu_core_stats', 'CONfu Kernetal', 'confu_core_numbers_widget');
+	wp_add_dashboard_widget('confu_core_stats', __( 'CONfu by Numbers', 'confu' ), 'confu_core_numbers_widget');
 }
 add_action('wp_dashboard_setup', 'add_confu_dashboard_widgets' );
 

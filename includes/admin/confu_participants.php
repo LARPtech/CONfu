@@ -21,36 +21,36 @@
 					<table class="wp-list-table widefat fixed" cellspacing="0">
 						<thead>
 							<tr>
-								<th colspan="2"><strong>STAMDATA</strong></th>
+								<th colspan="2"><strong><?php _e( 'Userdata', 'confu' ); ?></strong></th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr>
-								<th>Navn</th>
+								<th><?php _e( 'Name', 'confu' ); ?></th>
 								<td><?php echo $user->user_firstname . ' ' . $user->user_lastname; ?></td>
 							</tr>
 							<tr>
-								<th>Telefon</th>
+								<th><?php _e( 'Phone', 'confu' ); ?></th>
 								<td><?php echo get_user_meta($_GET["participantID"], 'confu_attendee_phone', true); ?></td>
 							</tr>
 							<tr>
-								<th>Email</th>
+								<th><?php _e( 'Email', 'confu' ); ?></th>
 								<td><?php echo $user->user_email; ?></td>
 							</tr>
 							<tr>
-								<th>Fødselsdag</th>
+								<th><?php _e( 'Birthdate', 'confu' ); ?></th>
 								<td><?php echo get_user_meta($_GET["participantID"], 'confu_attendee_birthdate', true); ?></td>
 							</tr>
 							<tr>
-								<th>Spilleder</th>
+								<th><?php _e( 'GM?', 'confu' ); ?></th>
 								<td><?php if( get_user_meta($_GET["participantID"], 'confu_attendee_possible_gm', true) == 1 ) { echo 'Ja'; } else { echo 'Nej'; } ?></td>
 							</tr>
 							<tr>
-								<th>Medlem</th>
+								<th><?php _e( 'Member?', 'confu' ); ?></th>
 								<td><?php if( get_user_meta($_GET["participantID"], 'confu_membership', true) == 1 ) { echo 'Ja'; } else { echo 'Nej'; } ?></td>
 							</tr>
 							<tr>
-								<th>Besked</th>
+								<th><?php _e( 'Note', 'confu' ); ?></th>
 								<td><?php echo get_user_meta($_GET["participantID"], 'confu_attendee_notes', true); ?></td>
 							</tr>
 						</tbody>
@@ -112,32 +112,32 @@
 				</td>
 			</tr>
 			<tr>
-				<td>
+				<td valign="top">
 					
 					<table class="wp-list-table widefat fixed" cellspacing="0">
 						<thead>
 							<tr>
-								<th colspan="2"><strong>BETALING</strong></th>
+								<th colspan="2"><strong><?php _e( 'Payment', 'confu' ); ?></strong></th>
 							</tr>
 						</thead>
 						<form method="post">
 						<tbody>
 							<tr>
-								<th>Samlede pris</th>
+								<th><?php _e( 'Total price', 'confu' ); ?></th>
 								<td><?php $amountOwed = getUserTotal($_GET["participantID"]); echo $amountOwed; ?>,-</td>
 							</tr>
 							<tr>
-								<th>Betaling modtaget</th>
+								<th><?php _e( 'Payment Received', 'confu' ); ?></th>
 								<td><input type="text" name="confuAmountPaid" value="<?php $amountPaid = get_user_meta($_GET["participantID"], 'confu_payment_received', true); if( is_numeric($amountPaid) ) { echo $amountPaid; } else { echo 0; } ?>" class="widefat" /></td>
 							</tr>
 							<tr>
-								<th>Skylder</th>
+								<th><?php _e( 'Amount owed', 'confu' ); ?></th>
 								<td><?php echo $amountOwed - $amountPaid; ?>,-</td>
 							</tr>
 							<tr>
 								<th></th>
 								<td>
-									<input type="submit" name="submit" id="submit" class="button button-primary" value="Gem ændringer">
+									<input type="submit" name="submit" id="submit" class="button button-primary" value="<?php _e( 'Save changes', 'confu' ); ?>">
 								</td>
 							</tr>
 						</tbody>
@@ -154,30 +154,30 @@
 <?php } else { ?>
 
 	<div class="wrap">
-		<div id="icon-options-general" class="icon32"><br></div><h2>CONfu</h2>
+		<h2>CONfu</h2>
 
 		<br class="clear">
 
 		<table class="wp-list-table widefat fixed" cellspacing="0">
 			<thead>
 				<tr>
-					<th>Navn</th>
-					<th>Tilmeldingsdato</th>
-					<th>Telefonnummer</th>
-					<th>Email</th>
-					<th>Spilleder</th>
-					<th>Medlem</th>
+					<th><?php _e( 'Name', 'confu' ); ?></th>
+					<th><?php _e( 'Signup Date', 'confu' ); ?></th>
+					<th><?php _e( 'Phone', 'confu' ); ?></th>
+					<th><?php _e( 'Email', 'confu' ); ?></th>
+					<th><?php _e( 'GM?', 'confu' ); ?></th>
+					<th><?php _e( 'Member?', 'confu' ); ?></th>
 				</tr>
 			</thead>
 				
 			<tfoot>
 				<tr>
-					<th>Navn</th>
-					<th>Tilmeldingsdato</th>
-					<th>Telefonnummer</th>
-					<th>Email</th>
-					<th>Spilleder</th>
-					<th>Medlem</th>
+					<th><?php _e( 'Name', 'confu' ); ?></th>
+					<th><?php _e( 'Signup Date', 'confu' ); ?></th>
+					<th><?php _e( 'Phone', 'confu' ); ?></th>
+					<th><?php _e( 'Email', 'confu' ); ?></th>
+					<th><?php _e( 'GM?', 'confu' ); ?></th>
+					<th><?php _e( 'Member?', 'confu' ); ?></th>
 				</tr>
 			</tfoot>
 	

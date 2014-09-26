@@ -1,18 +1,18 @@
 <?php
 function confu_activity_init() {
 	$labels = array(
-		'name' => _x('Aktiviteter', 'post type general name'),
-		'singular_name' => _x('Aktivitet', 'post type singular name'),
-		'add_new' => _x('Tilføj ny', ''),
-		'add_new_item' => __('Tilføj ny aktivitet'),
-		'edit_item' => __('Rediger aktivitet'),
-		'new_item' => __('Ny aktivitet'),
-		'all_items' => __('Alle aktiviteter'),
-		'view_item' => __('Vis aktivitet'),
-		'search_items' => __('Søg i aktiviteter'),
-		'not_found' =>  __('Ingen aktiviteter fundet'),
-		'not_found_in_trash' => __('Ingen aktiviteter fundet i papirkurven'), 
-		'menu_name' => 'Aktiviteter'
+		'name' => _x('Aktiviteter', 'post type general name','confu' ),
+		'singular_name' => _x('Aktivitet', 'post type singular name','confu' ),
+		'add_new' => _x('Tilføj ny', '','confu' ),
+		'add_new_item' => __('Tilføj ny aktivitet','confu' ),
+		'edit_item' => __('Rediger aktivitet','confu' ),
+		'new_item' => __('Ny aktivitet','confu' ),
+		'all_items' => __('Alle aktiviteter','confu' ),
+		'view_item' => __('Vis aktivitet','confu' ),
+		'search_items' => __('Søg i aktiviteter','confu' ),
+		'not_found' =>  __('Ingen aktiviteter fundet','confu' ),
+		'not_found_in_trash' => __('Ingen aktiviteter fundet i papirkurven','confu' ), 
+		'menu_name' => __('Aktiviteter','confu' )
 	);
 	$args = array(
 		'labels' => $labels,
@@ -35,7 +35,7 @@ function confu_activity_init() {
 		'days',
 		'aktiviteter',
 		array(
-			'label' => __( 'Dage' ),
+			'label' => __( 'Dage', 'confu' ),
 			'rewrite' => array( 'slug' => 'dag' ),
 			'hierarchical' => true,
 		)
@@ -44,7 +44,7 @@ function confu_activity_init() {
 		'confu_activity_type',
 		'aktiviteter',
 		array(
-			'label' => __( 'Type' ),
+			'label' => __( 'Type' ,'confu' ),
 			'rewrite' => array( 'slug' => 'aktivitetstype' ),
 			'hierarchical' => true,
 		)
