@@ -8,9 +8,20 @@
  * Author URI: http://mertzmedia.dk/
  */
 
+// Do not access this file directly
+if ( !defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 define('CONFU_PATH', plugin_dir_path( __FILE__ ) );
+
 include(CONFU_PATH . 'includes/p2p-connection-types.inc.php');
 include(CONFU_PATH . 'includes/functions.php');
+
+//==================================
+//! CUSTOM POST TYPES
+//==================================
+include(CONFU_PATH . 'includes/functions/cpt-confu_activity.inc.php');
 
 //==================================
 //! ACTIVATION FUNCTIONS
@@ -31,15 +42,16 @@ register_activation_hook( __FILE__, 'confu_activate' );
 //! LOADING TRANSLATIONS
 //==================================
 function confu_load_plugin_textdomain() {
- 
+	
 	$domain = 'confu';
 	$locale = apply_filters( 'plugin_locale', get_locale(), $domain );
  
-	// wp-content/languages/plugin-name/plugin-name-de_DE.mo
-	load_textdomain( $domain, trailingslashit( WP_LANG_DIR ) . $domain . '/' . $domain . '-' . $locale . '.mo' );
-	// wp-content/plugins/plugin-name/languages/plugin-name-de_DE.mo
-	load_plugin_textdomain( $domain, FALSE, basename( dirname( __FILE__ ) ) . '/languages/' );
- 
+	if ( $loaded = load_textdomain( $domain, trailingslashit( WP_LANG_DIR ) . $domain . '/' . $domain . '-' . $locale . '.mo' ) ) {
+		return $loaded;
+	} else {
+		load_plugin_textdomain( $domain, FALSE, basename( dirname( __FILE__ ) ) . '/languages/' );
+	}
+	
 }
 add_action( 'init', 'confu_load_plugin_textdomain' );
 
@@ -113,9 +125,3 @@ function confu_queued() {
 	);
 }
 add_action('wp_enqueue_scripts', 'confu_queued');
-
-
-//==================================
-//! CUSTOM POST TYPES
-//==================================
-include(CONFU_PATH . 'includes/functions/cpt-confu_activity.inc.php');
