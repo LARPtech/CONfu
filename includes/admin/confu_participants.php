@@ -8,7 +8,7 @@
 ?>
 
 	<div class="wrap">
-		<h2>CONfu Deltager: <?php echo $user->user_firstname . ' ' . $user->user_lastname; ?></h2>
+		<h2><?php _e( 'CONfu Participant', 'confu' ); ?>: <?php echo $user->user_firstname . ' ' . $user->user_lastname; ?></h2>
 		<?php if( isset( $_POST['confu_payment_update_nonce'] ) && wp_verify_nonce( $_POST['confu_payment_update_nonce'], 'update_confu_participant_payment' ) ) {
 			update_user_meta( $_GET["participantID"], 'confu_payment_received', $_POST['confuAmountPaid'] );
 		} ?>
@@ -75,7 +75,7 @@
 					<table class="wp-list-table widefat fixed" cellspacing="0">
 						<thead>
 							<tr>
-								<th colspan="2"><strong>PROGRAM</strong></th>
+								<th colspan="2"><strong><?php _e( 'Programme', 'confu' ); ?></strong></th>
 							</tr>
 						</thead>
 						<tbody>
@@ -194,7 +194,7 @@
 					<th><a href="<?php echo $_SERVER["REQUEST_URI"]; ?>&participantID=<?php echo $attendee->ID; ?>"><?php echo $attendee->display_name; ?></a></th>
 					<td><?php echo $attendee->user_registered; ?></td>
 					<td><?php echo get_user_meta($attendee->ID, 'confu_attendee_phone', true); ?></td>
-					<td><a href="maito:<?php echo $attendee->user_email; ?>"><?php echo $attendee->user_email; ?></a></td>
+					<td><a href="mailto:<?php echo $attendee->user_email; ?>"><?php echo $attendee->user_email; ?></a></td>
 					<td><?php if ( get_user_meta($attendee->ID, 'confu_attendee_possible_gm', true)==1 ) { echo 'Ja'; } else { echo 'Nej'; } ?></td>
 					<td><?php if ( get_user_meta($attendee->ID, 'confu_membership', true)==1 ) { echo 'Ja'; } else { echo 'Nej'; } ?></td>
 				</tr>
