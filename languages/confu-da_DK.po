@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CONfu\n"
-"POT-Creation-Date: 2014-09-26 13:44+0100\n"
-"PO-Revision-Date: 2014-09-26 13:49+0100\n"
+"POT-Creation-Date: 2014-09-27 10:38+0200\n"
+"PO-Revision-Date: 2014-09-27 10:39+0200\n"
 "Last-Translator: Thomas Mertz <tm@peytz.dk>\n"
 "Language-Team: NERDtech <nerdtech@tmertz.com>\n"
 "Language: da\n"
@@ -16,21 +16,29 @@ msgstr ""
 "X-Poedit-KeywordsList: __;_e;_x\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: confu.php:21
+#: confu.php:32 includes/p2p-connection-types.inc.php:8
 msgid "Attendee"
 msgstr "Deltager"
 
-#: confu.php:68
+#: confu.php:88
 msgid "CONfu Participants"
 msgstr "CONfu Deltagere"
 
-#: confu.php:69 includes/admin/confu_settings.php:2
+#: confu.php:89 includes/admin/confu_settings.php:2
 msgid "CONfu Settings"
 msgstr "CONfu Indstillinger"
 
-#: confu.php:85
+#: confu.php:105
 msgid "CONfu by Numbers"
 msgstr "CONfu Kernetal"
+
+#: includes/admin/confu_dashboard_widget.php:3
+msgid "Tilmeldinger"
+msgstr "Signups"
+
+#: includes/admin/confu_overview.php:2
+msgid "CONfu Dashboard"
+msgstr "CONfu Overblik"
 
 #: includes/admin/confu_overview.php:6
 msgid "CONfu Signups"
@@ -39,6 +47,11 @@ msgstr "CONfu Tilmeldinger"
 #: includes/admin/confu_participants.php:4
 msgid "Updated!"
 msgstr "Opdateret!"
+
+#: includes/admin/confu_participants.php:11
+#, fuzzy
+msgid "CONfu Participant"
+msgstr "CONfu Deltagere"
 
 #: includes/admin/confu_participants.php:24
 msgid "Userdata"
@@ -81,6 +94,10 @@ msgstr "Medlem?"
 #: includes/admin/confu_participants.php:53
 msgid "Note"
 msgstr "Kommentar"
+
+#: includes/admin/confu_participants.php:78
+msgid "Programme"
+msgstr "Program"
 
 #: includes/admin/confu_participants.php:104
 #: includes/frontend/signupForm.inc.php:256
@@ -148,17 +165,23 @@ msgstr "Send mig et nyt kodeord"
 
 #: includes/frontend/signupForm.inc.php:5
 msgid ""
-"Uhm. Du har ikke valgt nogen dage. Du kan ikke deltage uden at vælge en dag "
-"eller to, måske tre."
+"Uhm. You haven't signed up for any days. You can't buy a ticket without "
+"signing up for a day or two. Maybe three."
 msgstr ""
+"Uhm. Du har ikke valgt nogen dage. Du kan ikke købe en billet uden at "
+"tilmelde dig en dag eller to. Måske tre."
 
 #: includes/frontend/signupForm.inc.php:14
-msgid "Hovsa. Du har vidst glemt at indtaste en emailadresse. Prøv igen, du!"
+msgid ""
+"Whoops! You seem to have forgotten to enter en email address. Try again, "
+"mate!"
 msgstr ""
+"Hovsa! Du har vidst glemt at indtaste en email adresse. Prøv lige igen, du!"
 
 #: includes/frontend/signupForm.inc.php:24
-msgid "Der er allerede tilmeldt en bruger med den mailadresse."
-msgstr ""
+msgid ""
+"The email address you've entered is already registered to a participant."
+msgstr "Den indtastede e-mail er allerede registreret til en deltager."
 
 #: includes/frontend/signupForm.inc.php:169
 msgid "Membership"
@@ -170,63 +193,56 @@ msgstr "Diverse"
 
 #: includes/functions/cpt-confu_activity.inc.php:4
 #: includes/functions/cpt-confu_activity.inc.php:15
-msgid "Aktiviteter"
-msgstr ""
+msgid "Activities"
+msgstr "Aktiviteter"
 
 #: includes/functions/cpt-confu_activity.inc.php:5
-msgid "Aktivitet"
-msgstr ""
+msgid "Activity"
+msgstr "Aktivitet"
 
 #: includes/functions/cpt-confu_activity.inc.php:6
-msgid "Tilføj ny"
-msgstr ""
+msgid "Add new"
+msgstr "Tilføj ny"
 
 #: includes/functions/cpt-confu_activity.inc.php:7
-msgid "Tilføj ny aktivitet"
-msgstr ""
+msgid "Add new activity"
+msgstr "Tilføj ny aktivitet"
 
 #: includes/functions/cpt-confu_activity.inc.php:8
-msgid "Rediger aktivitet"
-msgstr ""
+msgid "Edit activity"
+msgstr "Rediger aktivitet"
 
 #: includes/functions/cpt-confu_activity.inc.php:9
-msgid "Ny aktivitet"
-msgstr ""
+msgid "New activity"
+msgstr "Ny aktivitet"
 
 #: includes/functions/cpt-confu_activity.inc.php:10
-msgid "Alle aktiviteter"
-msgstr ""
+msgid "All activities"
+msgstr "Alle aktiviteter"
 
 #: includes/functions/cpt-confu_activity.inc.php:11
-msgid "Vis aktivitet"
-msgstr ""
+msgid "View activity"
+msgstr "Vis aktivitet"
 
 #: includes/functions/cpt-confu_activity.inc.php:12
-msgid "Søg i aktiviteter"
-msgstr ""
+msgid "Search activities"
+msgstr "Søg i aktiviteter"
 
 #: includes/functions/cpt-confu_activity.inc.php:13
-msgid "Ingen aktiviteter fundet"
-msgstr ""
+msgid "No activities found."
+msgstr "Ingen aktiviteter fundet."
 
 #: includes/functions/cpt-confu_activity.inc.php:14
-msgid "Ingen aktiviteter fundet i papirkurven"
-msgstr ""
+msgid "No activities found in trash."
+msgstr "Ingen aktiviteter fundet i papirkurven."
 
 #: includes/functions/cpt-confu_activity.inc.php:38
-msgid "Dage"
-msgstr ""
+msgid "Days"
+msgstr "Dage"
 
 #: includes/functions/cpt-confu_activity.inc.php:47
-msgid "Type"
-msgstr ""
-
-#: includes/p2p-connection-types.inc.php:8
-msgid "Deltager"
-msgstr ""
-
-#~ msgid "Tilmeldinger"
-#~ msgstr "Signups"
+msgid "Activity Types"
+msgstr "Aktivitetstype"
 
 #~ msgid "Tilmelding"
 #~ msgstr "Signup"

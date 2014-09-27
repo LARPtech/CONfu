@@ -5,7 +5,7 @@ function confu_connection_types() {
 		'from' => 'aktiviteter',
 		'to' => 'user',
 		'reciprocal' => true,
-		'title' => __('Deltager')
+		'title' => __( 'Attendee', 'confu' )
 	) );
 }
 add_action( 'p2p_init', 'confu_connection_types' );

@@ -2,7 +2,7 @@
 if( isset( $_POST[confu_nonce] ) && wp_verify_nonce( $_POST[confu_nonce], 'confu_submit_signup' ) ) {
 	if( !isset($_POST['confu']['ticket']) && count($_POST['confu']['ticket'])==0 ) {
 		
-		$errormessages[] = __('Uhm. Du har ikke valgt nogen dage. Du kan ikke deltage uden at vælge en dag eller to, måske tre.', 'confu');
+		$errormessages[] = __('Uhm. You haven\'t signed up for any days. You can\'t buy a ticket without signing up for a day or two. Maybe three.', 'confu');
 		echo '<div class="alert alert-danger" role="alert"><strong>FEJL!</strong>';
 		foreach( $errormessages as $message ) {
 			echo '<p>'.$message.'</p>';
@@ -11,7 +11,7 @@ if( isset( $_POST[confu_nonce] ) && wp_verify_nonce( $_POST[confu_nonce], 'confu
 		
 	} elseif( !isset($_POST['confu']['attendee']['email']) ) {
 	
-		$errormessages[] = __('Hovsa. Du har vidst glemt at indtaste en emailadresse. Prøv igen, du!', 'confu');
+		$errormessages[] = __('Whoops! You seem to have forgotten to enter en email address. Try again, mate!', 'confu');
 		echo '<div class="alert alert-danger" role="alert"><strong>FEJL!</strong>';
 		foreach( $errormessages as $message ) {
 			echo '<p>'.$message.'</p>';
@@ -21,7 +21,7 @@ if( isset( $_POST[confu_nonce] ) && wp_verify_nonce( $_POST[confu_nonce], 'confu
 	} else {
 	
 		if( email_exists( $_POST['confu']['attendee']['email'] ) ) {
-			$errormessages[] = __('Der er allerede tilmeldt en bruger med den mailadresse.', 'confu');
+			$errormessages[] = __('The email address you\'ve entered is already registered to a participant.', 'confu');
 			echo '<div class="alert alert-danger" role="alert"><strong>FEJL!</strong>';
 			foreach( $errormessages as $message ) {
 				echo '<p>'.$message.'</p>';
