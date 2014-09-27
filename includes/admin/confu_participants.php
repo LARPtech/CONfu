@@ -8,12 +8,10 @@
 ?>
 
 	<div class="wrap">
-		<h2><?php _e( 'CONfu Participant', 'confu' ); ?>: <?php echo $user->user_firstname . ' ' . $user->user_lastname; ?></h2>
+		<h2><?php _e( 'CONfu Attendee', 'confu' ); ?>: <?php echo $user->user_firstname . ' ' . $user->user_lastname; ?></h2>
 		<?php if( isset( $_POST['confu_payment_update_nonce'] ) && wp_verify_nonce( $_POST['confu_payment_update_nonce'], 'update_confu_participant_payment' ) ) {
 			update_user_meta( $_GET["participantID"], 'confu_payment_received', $_POST['confuAmountPaid'] );
 		} ?>
-		<br class="clear">
-		
 		<table width="100%">
 			<tr>
 				<td valign="top">
@@ -154,10 +152,7 @@
 <?php } else { ?>
 
 	<div class="wrap">
-		<h2>CONfu</h2>
-
-		<br class="clear">
-
+		<h2><?php _e( 'CONfu Attendees', 'confu' ); ?></h2>
 		<table class="wp-list-table widefat fixed" cellspacing="0">
 			<thead>
 				<tr>

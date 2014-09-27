@@ -17,6 +17,7 @@ define('CONFU_PATH', plugin_dir_path( __FILE__ ) );
 
 include(CONFU_PATH . 'includes/p2p-connection-types.inc.php');
 include(CONFU_PATH . 'includes/functions.php');
+include(CONFU_PATH . 'includes/functions/settings.inc.php');
 
 //==================================
 //! CUSTOM POST TYPES
@@ -54,6 +55,20 @@ function confu_load_plugin_textdomain() {
 	
 }
 add_action( 'init', 'confu_load_plugin_textdomain' );
+
+//==================================
+//! ACTION LINKS
+//==================================
+add_filter('plugin_action_links', 'wptuts_plugin_settings_link', 10, 2);
+function wptuts_plugin_settings_link($links, $file) {
+ 
+    if ( $file == 'confu/confu.php' ) {
+        /* Insert the link at the end*/
+        $links['settings'] = sprintf( '<a href="%s"> %s </a>', admin_url( 'admin.php?page=confu_settings' ), __( 'Settings', 'confu' ) );
+    }
+    return $links;
+ 
+}
 
 //==================================
 //! SHORTCODES
@@ -110,6 +125,8 @@ add_action('wp_dashboard_setup', 'add_confu_dashboard_widgets' );
 //==================================
 //! CSS AND JS QUEUE
 //==================================
+
+// FRONT END
 function confu_queued() {
 	wp_enqueue_style(
 		'confu_css',
@@ -125,3 +142,16 @@ function confu_queued() {
 	);
 }
 add_action('wp_enqueue_scripts', 'confu_queued');
+
+// WP ADMIN
+function confu_admin_asset_queue(){
+	wp_enqueue_script(
+		'field-date-js', 
+		plugin_dir_url(__FILE__) . 'assets/js/confu_admin.js', 
+		array('jquery', 'jquery-ui-core', 'jquery-ui-datepicker'),
+		time(),
+		true
+	);	
+	wp_enqueue_style( 'jquery-ui-datepicker' );
+}
+add_action( 'admin_enqueue_scripts', 'confu_admin_asset_queue' );
