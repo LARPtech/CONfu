@@ -134,7 +134,7 @@ function confu_queued() {
 		'1.0'
 	);
 	wp_enqueue_script( 
-		'script-name', 
+		'confu-js', 
 		plugin_dir_url(__FILE__) . 'assets/js/confu.js', 
 		array('jquery'), 
 		'1.0.0', 

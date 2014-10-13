@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CONfu\n"
-"POT-Creation-Date: 2014-09-27 10:38+0200\n"
-"PO-Revision-Date: 2014-09-27 10:39+0200\n"
+"POT-Creation-Date: 2014-09-28 21:29+0100\n"
+"PO-Revision-Date: 2014-09-28 21:29+0100\n"
 "Last-Translator: Thomas Mertz <tm@peytz.dk>\n"
 "Language-Team: NERDtech <nerdtech@tmertz.com>\n"
 "Language: da\n"
@@ -16,19 +16,23 @@ msgstr ""
 "X-Poedit-KeywordsList: __;_e;_x\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: confu.php:32 includes/p2p-connection-types.inc.php:8
+#: confu.php:33 includes/p2p-connection-types.inc.php:8
 msgid "Attendee"
 msgstr "Deltager"
 
-#: confu.php:88
+#: confu.php:67
+msgid "Settings"
+msgstr "Indstillinger"
+
+#: confu.php:103
 msgid "CONfu Participants"
 msgstr "CONfu Deltagere"
 
-#: confu.php:89 includes/admin/confu_settings.php:2
+#: confu.php:104 includes/admin/confu_settings.php:5
 msgid "CONfu Settings"
 msgstr "CONfu Indstillinger"
 
-#: confu.php:105
+#: confu.php:120
 msgid "CONfu by Numbers"
 msgstr "CONfu Kernetal"
 
@@ -49,83 +53,86 @@ msgid "Updated!"
 msgstr "Opdateret!"
 
 #: includes/admin/confu_participants.php:11
-#, fuzzy
-msgid "CONfu Participant"
-msgstr "CONfu Deltagere"
+msgid "CONfu Attendee"
+msgstr "CONfu Deltager"
 
-#: includes/admin/confu_participants.php:24
+#: includes/admin/confu_participants.php:22
 msgid "Userdata"
 msgstr "Brugerdata"
 
-#: includes/admin/confu_participants.php:29
-#: includes/admin/confu_participants.php:164
-#: includes/admin/confu_participants.php:175
+#: includes/admin/confu_participants.php:27
+#: includes/admin/confu_participants.php:159
+#: includes/admin/confu_participants.php:170
 msgid "Name"
 msgstr "Navn"
 
-#: includes/admin/confu_participants.php:33
-#: includes/admin/confu_participants.php:166
-#: includes/admin/confu_participants.php:177
+#: includes/admin/confu_participants.php:31
+#: includes/admin/confu_participants.php:161
+#: includes/admin/confu_participants.php:172
 msgid "Phone"
 msgstr "Telefon"
 
-#: includes/admin/confu_participants.php:37
-#: includes/admin/confu_participants.php:167
-#: includes/admin/confu_participants.php:178
+#: includes/admin/confu_participants.php:35
+#: includes/admin/confu_participants.php:162
+#: includes/admin/confu_participants.php:173
 msgid "Email"
 msgstr "E-mail"
 
-#: includes/admin/confu_participants.php:41
+#: includes/admin/confu_participants.php:39
 msgid "Birthdate"
 msgstr "Fødselsdato"
 
-#: includes/admin/confu_participants.php:45
-#: includes/admin/confu_participants.php:168
-#: includes/admin/confu_participants.php:179
+#: includes/admin/confu_participants.php:43
+#: includes/admin/confu_participants.php:163
+#: includes/admin/confu_participants.php:174
 msgid "GM?"
 msgstr "Spilleder?"
 
-#: includes/admin/confu_participants.php:49
-#: includes/admin/confu_participants.php:169
-#: includes/admin/confu_participants.php:180
+#: includes/admin/confu_participants.php:47
+#: includes/admin/confu_participants.php:164
+#: includes/admin/confu_participants.php:175
 msgid "Member?"
 msgstr "Medlem?"
 
-#: includes/admin/confu_participants.php:53
+#: includes/admin/confu_participants.php:51
 msgid "Note"
 msgstr "Kommentar"
 
-#: includes/admin/confu_participants.php:78
+#: includes/admin/confu_participants.php:76
 msgid "Programme"
 msgstr "Program"
 
-#: includes/admin/confu_participants.php:104
+#: includes/admin/confu_participants.php:102
 #: includes/frontend/signupForm.inc.php:256
 msgid "Sorry, no posts matched your criteria."
 msgstr "Beklager, men vi fandt ikke noget der matcher dine kriterier."
 
-#: includes/admin/confu_participants.php:120
+#: includes/admin/confu_participants.php:118
 msgid "Payment"
 msgstr "Betaling"
 
-#: includes/admin/confu_participants.php:126
+#: includes/admin/confu_participants.php:124
 msgid "Total price"
 msgstr "Samlet pris"
 
-#: includes/admin/confu_participants.php:130
+#: includes/admin/confu_participants.php:128
 msgid "Payment Received"
 msgstr "Betaling modtaget"
 
-#: includes/admin/confu_participants.php:134
+#: includes/admin/confu_participants.php:132
 msgid "Amount owed"
 msgstr "Skylder"
 
-#: includes/admin/confu_participants.php:140
+#: includes/admin/confu_participants.php:138
 msgid "Save changes"
 msgstr "Gem ændringer"
 
-#: includes/admin/confu_participants.php:165
-#: includes/admin/confu_participants.php:176
+#: includes/admin/confu_participants.php:155
+msgid "CONfu Attendees"
+msgstr "CONfu Deltagere"
+
+#: includes/admin/confu_participants.php:160
+#: includes/admin/confu_participants.php:171
 msgid "Signup Date"
 msgstr "Tilmeldingsdato"
 
@@ -243,6 +250,18 @@ msgstr "Dage"
 #: includes/functions/cpt-confu_activity.inc.php:47
 msgid "Activity Types"
 msgstr "Aktivitetstype"
+
+#: includes/functions/settings.inc.php:7
+msgid "Important dates and times for CONfu."
+msgstr "Vigtige datoer og tidspunker."
+
+#: includes/functions/settings.inc.php:14
+msgid "Signup closes on"
+msgstr "Tilmeldingen d. "
+
+#, fuzzy
+#~ msgid "CONfu Participant"
+#~ msgstr "CONfu Deltagere"
 
 #~ msgid "Tilmelding"
 #~ msgstr "Signup"

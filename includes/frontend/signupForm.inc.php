@@ -222,12 +222,7 @@ foreach($days as $day) { ?>
 			'meta_key' => 'hc_aktivitet_tidspunkt',
 			'orderby' => 'meta_value',
 			'order' => 'ASC',
-			'meta_query' => array( array(
-				'key'     => 'confu_hide_from_signup',
-				#'value'   => '1',
-				#'type'    => 'numeric',
-				'compare' => 'NOT EXISTS'
-			) ),
+			'post__not_in' => array( 396, 436 ),
 			'tax_query' => array( array(
 				'taxonomy' => 'days',
 				'field'    => 'slug',
